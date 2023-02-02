@@ -6,7 +6,9 @@ ADD phpinfo.php .
 
 USER 0
 
-RUN dnf install -y php-sodium
+# RUN dnf install -y php-sodium
+RUN yum install epel-release
+RUN yum install libsodium libsodium-devel
 
 # Install the dependencies
 RUN TEMPFILE=$(mktemp) && \
