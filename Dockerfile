@@ -1,5 +1,9 @@
 FROM registry.redhat.io/rhel9/php-81
 
+# WARNING! ARG values are not suitable to handle secrets without extra care. 
+ARG PUBLIC_KEY
+ARG PRIVATE_KEY
+
 # Install Composer
 USER 0
 RUN TEMPFILE=$(mktemp) && \
