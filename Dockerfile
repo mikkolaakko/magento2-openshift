@@ -6,7 +6,8 @@ FROM registry.redhat.io/ubi9/php-81
 # Install Composer
 RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
-    php <"$TEMPFILE"
+    php <"$TEMPFILE" && \
+    mv composer.phar /usr/local/bin/composer
 
 # Run script uses standard ways to configure the PHP application
 # and execs httpd -D FOREGROUND at the end
