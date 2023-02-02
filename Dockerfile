@@ -1,15 +1,21 @@
 FROM registry.redhat.io/rhel9/php-81
 
-# Add application sources
-# ADD app-src .
-
-# Install the dependencies
+# Install Composer
+USER 0
 RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
     php <"$TEMPFILE" && \
     mv composer.phar /usr/local/bin/composer
 #    composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition .
 #    ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
+USER 1001
+
+# Add application sources
+# ADD app-src .
+
+# Install the dependencies
+
+# RUN /usr/libexec/s2i/assemble
 
 # Run script uses standard ways to configure the PHP application
 # and execs httpd -D FOREGROUND at the end
