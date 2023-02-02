@@ -10,7 +10,7 @@ RUN TEMPFILE=$(mktemp) && \
 RUN apt-get update && apt-get install -y \
 	libzip-dev \
 	zip \
-	&& docker-php-ext-install zip
+	&& docker-php-ext-install zip gd intl
 
 ADD phpinfo.php /var/www/html/
 
