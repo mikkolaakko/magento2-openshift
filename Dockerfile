@@ -7,6 +7,8 @@ FROM php:8.2.1-apache
 
 USER 0
 
+RUN apt-get update
+
 # Install Composer
 RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
