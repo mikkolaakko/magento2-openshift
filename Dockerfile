@@ -8,7 +8,7 @@ RUN TEMPFILE=$(mktemp) && \
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-		php-zip
+		zip
 
 ADD phpinfo.php /var/www/html/
 
