@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:8.1-rc-apache
 # FROM registry.redhat.io/ubi9/php-81
 # FROM registry.redhat.io/rhel9/php-81
 
@@ -16,8 +16,6 @@ RUN apt-get install -y libpq-dev
 
 
 # USER 0
-
-RUN apt-get update
 
 # Install Composer
 # RUN TEMPFILE=$(mktemp) && \
@@ -39,4 +37,4 @@ RUN apt-get update
 # the approriate places.
 # This can obviously be done differently, and in that case, the final CMD
 # should be set to "CMD httpd -D FOREGROUND" instead.
-CMD /usr/libexec/s2i/run
+# CMD /usr/libexec/s2i/run
