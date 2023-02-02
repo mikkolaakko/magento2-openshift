@@ -8,6 +8,9 @@ RUN TEMPFILE=$(mktemp) && \
     mv composer.phar /usr/local/bin/composer
 #    composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition .
 #    ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
+
+RUN chown -R 1001:0 /opt/app-root/src
+
 USER 1001
 
 # Add application sources
