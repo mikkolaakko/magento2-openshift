@@ -1,6 +1,6 @@
+FROM php:7.3-fpm
 # FROM registry.redhat.io/ubi9/php-81
 # FROM registry.redhat.io/rhel9/php-81
-FROM php:7.3-fpm
 
 # Set working directory
 WORKDIR /var/www/html/
