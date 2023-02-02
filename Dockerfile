@@ -1,6 +1,6 @@
 # FROM registry.redhat.io/ubi9/php-81
 # FROM registry.redhat.io/rhel9/php-81
-FROM php:8.1-rc-fpm-alpine
+FROM php:8.2.1-apache
 
 # Add application sources
 # ADD app-src .
