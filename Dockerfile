@@ -6,6 +6,8 @@ ADD phpinfo.php .
 
 USER 0
 
+RUN dnf install -y php-sodium
+
 # Install the dependencies
 RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
