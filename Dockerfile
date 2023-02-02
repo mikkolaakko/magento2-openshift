@@ -1,7 +1,12 @@
 FROM registry.redhat.io/ubi9/php-81
 
 # Add application sources
-ADD app-src .
+# ADD app-src .
+
+# Install Composer
+RUN TEMPFILE=$(mktemp) && \
+    curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
+    php <"$TEMPFILE"
 
 # Run script uses standard ways to configure the PHP application
 # and execs httpd -D FOREGROUND at the end
