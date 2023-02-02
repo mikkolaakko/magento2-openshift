@@ -9,9 +9,9 @@ RUN TEMPFILE=$(mktemp) && \
 # Install dependencies
 RUN apt-get update && apt-get install -y \
 		zip \
-		gd \
-		intl \
-		pdo_mysql \
+		php-gd \
+		php-intl \
+		php-mysql \
 		php-webdriver
 
 ADD phpinfo.php /var/www/html/
