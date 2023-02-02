@@ -4,11 +4,15 @@ FROM registry.redhat.io/rhel9/php-81
 # Add application sources
 # ADD app-src .
 
+USER 0
+
 # Install Composer
 RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
     php <"$TEMPFILE" && \
     mv composer.phar /usr/local/bin/composer
+
+USER 1001
 
 RUN git clone https://github.com/magento/magento2.git --depth=1
 
