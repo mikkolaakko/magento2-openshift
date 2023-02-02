@@ -4,12 +4,16 @@ FROM registry.redhat.io/ubi9/php-81
 # ADD app-srr .
 ADD phpinfo.php .
 
+USER 0
+
 # Install the dependencies
 RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
     php <"$TEMPFILE" && \
     mv composer.phar /usr/local/bin/composer
     # ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
+
+USER 1001
 
 # Run script uses standard ways to configure the PHP application
 # and execs httpd -D FOREGROUND at the end
