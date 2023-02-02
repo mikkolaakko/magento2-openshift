@@ -14,6 +14,7 @@ RUN TEMPFILE=$(mktemp) && \
 
 USER 1001
 
+# RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento2
 RUN git clone https://github.com/magento/magento2.git --depth=1
 
 # Run script uses standard ways to configure the PHP application
