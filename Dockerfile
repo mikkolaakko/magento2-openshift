@@ -1,5 +1,8 @@
 FROM registry.redhat.io/ubi9/php-81
 
+# Add application sources
+ADD app-src .
+
 # Run script uses standard ways to configure the PHP application
 # and execs httpd -D FOREGROUND at the end
 # See more in <version>/s2i/bin/run in this repository.
