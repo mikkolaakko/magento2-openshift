@@ -5,25 +5,25 @@ FROM php:8.1-rc-apache
 # Set working directory
 WORKDIR /var/www/html/
 
-# Update apt cache
-RUN apt-get update
+USER 0
 
-#Install dependencies for the operating system softwa
-RUN apt-get install -y libpq-dev
+# Update apt cache
+# RUN apt-get update
+
+# Install dependencies
+# RUN docker-php-ext-enable sodium
+# RUN apt-get install -y libpq-dev
 
 # Add application sources
 # ADD app-src .
 
-
-# USER 0
-
 # Install Composer
-# RUN TEMPFILE=$(mktemp) && \
-#     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
-#     php <"$TEMPFILE" && \
-#    mv composer.phar /usr/local/bin/composer
+RUN TEMPFILE=$(mktemp) && \
+    curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
+    php <"$TEMPFILE" && \
+   mv composer.phar /usr/local/bin/composer
 
-# USER 1001
+USER 1001
 
 # RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento2
 # RUN git clone https://github.com/magento/magento2.git --depth=1
