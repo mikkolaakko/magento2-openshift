@@ -10,10 +10,7 @@ RUN TEMPFILE=$(mktemp) && \
 RUN apt-get update && apt-get install -y \
 	libzip-dev \
 	zip \
-	libfreetype6-dev \
-	libjpeg62-turbo-dev \
-	libpng-dev \
-	&& docker-php-ext-install zip gd intl
+	&& docker-php-ext-install zip
 
 ADD phpinfo.php /var/www/html/
 
