@@ -7,13 +7,8 @@ RUN TEMPFILE=$(mktemp) && \
     mv composer.phar /usr/local/bin/composer
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-		zip \
-		php7.4-gd \
-		php7.4-intl
-
-#		mysql \
-#		webdriver
+RUN apt-get update && \
+	docker-php-ext-install zip
 
 ADD phpinfo.php /var/www/html/
 
