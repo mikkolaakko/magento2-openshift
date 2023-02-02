@@ -1,4 +1,4 @@
-FROM rhel9/php-81
+FROM registry.redhat.io/rhel9/php-81
 
 # Add application sources
 # ADD app-src .
