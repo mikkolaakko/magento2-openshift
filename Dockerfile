@@ -1,32 +1,14 @@
-FROM php:8.1-rc-apache
-# FROM registry.redhat.io/ubi9/php-81
-# FROM registry.redhat.io/rhel9/php-81
-
-# Set working directory
-WORKDIR /var/www/html/
-
-USER 0
-
-# Update apt cache
-# RUN apt-get update
-
-# Install dependencies
-# RUN docker-php-ext-enable sodium
-# RUN apt-get install -y libpq-dev
+FROM registry.redhat.io/ubi9/php-81
 
 # Add application sources
-# ADD app-src .
+# ADD app-srr .
+ADD phpinfo.php .
 
-# Install Composer
+# Install the dependencies
 RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
     php <"$TEMPFILE" && \
-   mv composer.phar /usr/local/bin/composer
-
-USER 1001
-
-# RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento2
-# RUN git clone https://github.com/magento/magento2.git --depth=1
+    ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
 
 # Run script uses standard ways to configure the PHP application
 # and execs httpd -D FOREGROUND at the end
@@ -37,4 +19,4 @@ USER 1001
 # the approriate places.
 # This can obviously be done differently, and in that case, the final CMD
 # should be set to "CMD httpd -D FOREGROUND" instead.
-# CMD /usr/libexec/s2i/run
+CMD /usr/libexec/s2i/run
