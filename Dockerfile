@@ -6,7 +6,8 @@ FROM registry.redhat.io/rhel9/php-81
 # Install the dependencies
 RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
-    php <"$TEMPFILE" --install-dir=/usr/local/bin
+    php <"$TEMPFILE" && \
+    mv composer.phar /usr/local/bin/composer
 #    composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition .
 #    ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
 
