@@ -1,4 +1,5 @@
-FROM registry.redhat.io/ubi9/php-81
+# FROM registry.redhat.io/ubi9/php-81
+FROM registry.redhat.io/rhel9/php-81
 
 # Add application sources
 # ADD app-src .
@@ -8,6 +9,8 @@ RUN TEMPFILE=$(mktemp) && \
     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
     php <"$TEMPFILE" && \
     mv composer.phar /usr/local/bin/composer
+
+RUN git clone https://github.com/magento/magento2.git --depth=1
 
 # Run script uses standard ways to configure the PHP application
 # and execs httpd -D FOREGROUND at the end
