@@ -1,4 +1,5 @@
-FROM php:8.1.16-apache
+# FROM php:8.1.16-apache
+FROM php:7.4.33-apache
 
 # Install dependencies and php extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
