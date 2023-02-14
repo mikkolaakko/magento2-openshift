@@ -15,10 +15,10 @@ RUN apt-get update && apt-get install -y \
 ADD phpinfo.php /var/www/html/
 
 # Install composer
-# RUN TEMPFILE=$(mktemp) && \
-#     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
-#     php <"$TEMPFILE" && \
-#     mv composer.phar /usr/local/bin/composer
+RUN TEMPFILE=$(mktemp) && \
+    curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
+    php <"$TEMPFILE" && \
+    mv composer.phar /usr/local/bin/composer
 
 # Get the metapackage
 # composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html/magento2
