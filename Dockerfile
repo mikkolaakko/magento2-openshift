@@ -1,11 +1,5 @@
 FROM php:8.1.16-apache
 
-# Install composer
-RUN TEMPFILE=$(mktemp) && \
-    curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
-    php <"$TEMPFILE" && \
-    mv composer.phar /usr/local/bin/composer
-
 # Install dependencies and php extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
@@ -18,6 +12,12 @@ RUN apt-get update && apt-get install -y \
 	zip
 
 ADD phpinfo.php /var/www/html/
+
+# Install composer
+# RUN TEMPFILE=$(mktemp) && \
+#     curl -o "$TEMPFILE" "https://getcomposer.org/installer" && \
+#     php <"$TEMPFILE" && \
+#     mv composer.phar /usr/local/bin/composer
 
 # Get the metapackage
 # composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html/magento2
