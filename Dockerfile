@@ -20,6 +20,12 @@ RUN TEMPFILE=$(mktemp) && \
     php <"$TEMPFILE" && \
     mv composer.phar /usr/local/bin/composer
 
+RUN mkdir -p /.composer
+
+# Sets the directory and file permissions
+RUN chgrp -R 0 /.composer && \
+    chmod -R g+rwX /.composer
+
 # Get the metapackage
 # composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html/magento2
 # composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.5 /var/www/html/magento2
