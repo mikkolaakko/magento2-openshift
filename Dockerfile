@@ -44,7 +44,7 @@ RUN composer config --global http-basic.repo.magento.com $PUBLIC_KEY $PRIVATE_KE
 # chmod u+x bin/magento
 
 # Get the metapackage
-RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html/magento2
+# RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html/magento2
 
 # composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.5 /var/www/html/magento2
 # RUN curl -LO https://github.com/magento/magento2/archive/refs/tags/2.4.5.zip && \
