@@ -33,10 +33,12 @@ RUN mkdir -p /.composer
 RUN chgrp -R 0 /.composer /var/www/html/ && \
     chmod -R g+rwX /.composer /var/www/html/
 
-USER 1001
+# USER 1001
+# RUN chown -R 1001:0 /some/directory && \
+#     chmod -R g=u /some/directory
 
 # Store access keys
-RUN composer config --global http-basic.repo.magento.com $PUBLIC_KEY $PRIVATE_KEY
+# RUN composer config --global http-basic.repo.magento.com $PUBLIC_KEY $PRIVATE_KEY
 
 # find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
 # find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
