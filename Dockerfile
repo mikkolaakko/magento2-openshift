@@ -1,7 +1,8 @@
 # FROM php:8.1.16-apache
 FROM php:7.4.33-apache
 
-RUN echo hello $PUBLIC_KEY
+# Use the production configuration
+# RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Install dependencies and php extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -24,11 +25,17 @@ RUN TEMPFILE=$(mktemp) && \
 
 # Store access keys
 RUN mkdir -p /.composer
-# RUN composer config --global http-basic.repo.magento.com username password
+RUN echo hello $PUBLIC_KEY $PRIVATE_KEY
+RUN composer config --global http-basic.repo.magento.com $PUBLIC_KEY $PRIVATE_KEY
 
 # Sets the directory and file permissions
 RUN chgrp -R 0 /.composer /var/www/html/ && \
     chmod -R g+rwX /.composer /var/www/html/
+
+# find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+# find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
+# chown -R :www-data . # Ubuntu
+# chmod u+x bin/magento
 
 # Get the metapackage
 # RUN curl -LO https://github.com/magento/magento2/archive/refs/tags/2.4.5.zip && \
